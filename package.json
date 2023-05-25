@@ -15,7 +15,7 @@
     "@fastify/cookie": "^8.3.0",
     "dotenv": "^16.0.3",
     "fastify": "^4.17.0",
-    "knex": "^2.4.2",
+    "sqlite3": "^5.1.6",
     "tsx": "^3.12.7",
     "typescript": "^5.0.4",
     "zod": "^3.21.4"
@@ -23,6 +23,7 @@
   "devDependencies": {
     "@rocketseat/eslint-config": "^1.2.0",
     "@types/node": "^20.1.2",
-    "eslint": "^8.40.0"
+    "eslint": "^8.40.0",
+    "knex": "^2.4.2"
   }
 }

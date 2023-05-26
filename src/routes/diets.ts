@@ -51,6 +51,26 @@ export async function dietRoutes(app: FastifyInstance) {
 
     return reply.status(201).send()
   })
+  app.get(
+    '/summary',
+    { preHandler: [checkSessionIdExists] },
+    async (request) => {
+      const { sessionId } = request.cookies
+      const summary = await knex('diets')
+        .select(
+          knex.raw(
+            'count(*) filter (where is_in_diet = true) as totalWithinDiet',
+          ),
+          knex.raw(
+            'count(*) filter (where is_in_diet = false) as totalOutsideDiet',
+          ),
+          knex.raw('count(*) as total'),
+        )
+        .where({ session_id: sessionId })
+
+      return { summary }
+    },
+  )
 
   app.patch('/:id', async (request, reply) => {
     const editDietBodySchema = z.object({
